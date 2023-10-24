@@ -13,8 +13,17 @@ class Phase extends Model
         'name',
     ];
 
+    protected $appends = [
+        'tasks_count'
+    ];
+
     function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    function getTasksCountAttribute()
+    {
+        return $this->tasks()->count();
     }
 }
